@@ -1,4 +1,4 @@
-# Field Shift: data layer (NASA Space Apps 2026)
+# Field Shift (NASA Space Apps 2026)
 
 Team **Los Desastronautas** · Challenge "Field Shift: Adapting Farms with NASA Data"
 

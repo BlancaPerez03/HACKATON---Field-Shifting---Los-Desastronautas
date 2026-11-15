@@ -1,0 +1,29 @@
+[
+ {
+  "id": "isu_agronomy_south",
+  "name": "ISU Agronomy Research Farm - Parcela Sur (Boone County, IA)",
+  "cache_key": "411887934aa262e23cdacaf059c4bea97392669e4221baf0ca357c81dac59187",
+  "start_date": "2016-01-01",
+  "end_date": "2025-12-31",
+  "partial": false,
+  "terrain_grid": true
+ },
+ {
+  "id": "isu_northeast_main",
+  "name": "ISU Northeast Research Farm - Lote Principal (Floyd County, IA)",
+  "cache_key": "c2fc18fbb3257a02f9dd33473c2a07ec97635b49aab39ca01967286eee4e90de",
+  "start_date": "2016-01-01",
+  "end_date": "2025-12-31",
+  "partial": false,
+  "terrain_grid": true
+ },
+ {
+  "id": "isu_southeast_east",
+  "name": "ISU Southeast Research Farm - Lote Este (Washington County, IA)",
+  "cache_key": "209f2e2c58447dcca901cc86d4534f020be4496ebf268461f6c02a9e3885b069",
+  "start_date": "2016-01-01",
+  "end_date": "2025-12-31",
+  "partial": false,
+  "terrain_grid": true
+ }
+]

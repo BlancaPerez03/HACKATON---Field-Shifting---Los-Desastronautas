@@ -1,0 +1,123 @@
+{
+  "_about": "Agronomic parameters added to the team catalogue (crops_us.csv) for the screening checks, and documented corrections of catalogue values. Every value carries its source or is marked as a team hypothesis. Checked against 10 US reference sites with scripts/validate_crops.py. AI-assisted compilation; reviewed by the team.",
+  "_references": {
+    "FAO56": "Allen, R.G., Pereira, L.S., Raes, D., Smith, M. (1998). Crop evapotranspiration. FAO Irrigation and Drainage Paper 56. Tables 11 (stage lengths) and 12 (Kc ini/mid/end).",
+    "FAO33": "Doorenbos, J., Kassam, A.H. (1979). Yield response to water. FAO Irrigation and Drainage Paper 33. Seasonal yield response factors Ky (also FAO-56 / FAO-66).",
+    "HATFIELD2011": "Hatfield, J.L. et al. (2011). Climate impacts on agriculture: implications for crop production. Agronomy Journal 103(2): 351-370. Table of reproductive failure temperatures.",
+    "USDA_ZONES": "USDA Plant Hardiness Zone Map (2023): zones are defined by the 30-year average annual extreme minimum temperature (zone 9a = -6.7 to -3.9 degC, 8a = -12.2 to -9.4, 7a = -17.8 to -15.0, 6a = -23.3 to -20.6, 5a = -28.9 to -26.1, 4a = -34.4 to -31.7).",
+    "PORTER_GAWITH1999": "Porter, J.R., Gawith, M. (1999). Temperatures and the growth and development of wheat: a review. European Journal of Agronomy 10: 23-36 (vernalization effective about -1 to 15 degC, optimum about 5 degC).",
+    "WINKLER": "Amerine, M.A., Winkler, A.J. (1944). Composition and quality of musts and wines of California grapes. Hilgardia 15: 493-675 (Winkler regions, degree-days base 10 degC, April-October; region I starts at 1111 degC-day / 2000 degF-day).",
+    "GDD_86_50": "Modified growing degree-day method for corn, soybean and sorghum (86/50 degF = 30/10 degC caps): McMaster & Wilhelm (1997) Agric. For. Meteorol. 87: 291-300; Iowa State University and NDSU extension.",
+    "PEET1997": "Peet, M.M., Willits, D.H., Gardner, R. (1997). Response of ovule development and post-pollen production processes in male-sterile tomatoes to chronic, sub-acute high temperature stress. J. Exp. Bot. 48: 101-111; Sato, S. et al. (2000) Ann. Bot. 86: 739-747 (tomato fruit set falls above ~32 degC day temperatures).",
+    "NASS": "USDA NASS Quick Stats and Census of Agriculture 2022 (where each crop is grown commercially; used to calibrate the minimum requirements against real producing regions)."
+  },
+  "_shared": {
+    "stored_soil_water_cap_mm": {"value": 100, "kind": "hypothesis", "note": "Plant-available water a deep loam can hold at sowing (about 150 mm/m); we credit at most 100 mm, and only from the surplus (rain above ET0) of the 6 months before the season."},
+    "water_loss_ok_pct": {"value": 15, "kind": "hypothesis", "note": "Below 15 % expected loss rain covers the crop (e.g. rainfed corn in central Iowa)."},
+    "water_loss_limit_pct": {"value": 75, "kind": "hypothesis", "note": "At 75 % expected loss or more (yield below a quarter of its potential) the crop needs irrigation. Semi-arid dryland farming (Texas High Plains cotton and wheat, 60-75 % below irrigated yields) stays 'tight'."},
+    "water_cover_limit_pct": {"value": 25, "kind": "hypothesis", "note": "FAO-33's linear yield response holds for moderate deficits only: if rain and stored water cover less than a quarter of the need, the crop is not viable without irrigation whatever its Ky."},
+    "heat_days_marginal": {"value": 10, "kind": "hypothesis", "note": "10 or more days per season at or above the crop's reproductive failure temperature = yield risk. Never limiting alone: crops are grown in hotter US regions (irrigated canopies stay cooler than the 2 m air)."},
+    "killing_freeze_c": {"value": -2.0, "kind": "standard", "note": "NOAA hard freeze (28 degF): ends the season of frost-sensitive crops in autumn."}
+  },
+  "crops": {
+    "corn_maize": {
+      "kc_avg": 0.85, "kc_source": "FAO56: Kc 0.30/1.20/0.60, stages 30/40/50/50 d, time-weighted",
+      "ky": 1.25, "ky_source": "FAO33",
+      "gdd_method": "capped_10_30", "heat_fail_c": 35, "heat_source": "HATFIELD2011",
+      "corrections": {"gdd_required": {"value": 1200, "was": 1500, "reason": "1500 degC-day (~2700 degF) is a full-season Corn Belt hybrid; the earliest commercial hybrids (75-80 day relative maturity, North Dakota) need ~2100-2200 degF GDD = ~1200 degC-day (86/50 method)."}}
+    },
+    "soybean": {
+      "kc_avg": 0.90, "kc_source": "FAO56: Kc 0.40/1.15/0.50, stages 20/30/60/25 d",
+      "ky": 0.85, "ky_source": "FAO33",
+      "gdd_method": "capped_10_30", "heat_fail_c": 39, "heat_source": "HATFIELD2011",
+      "n_note": "Rotation N credit for the next crop (extension credit ~30-50 lb N/acre); the net soil N balance of a soybean grain crop is close to zero because the grain removes most of the fixed N.",
+      "corrections": {"gdd_required": {"value": 1000, "was": 1300, "reason": "Early maturity groups (00-0) mature in ~1000 degC-day in North Dakota / Manitoba; soybean development is also driven by day length."}}
+    },
+    "alfalfa_hay_perennial": {
+      "kc_avg": 0.90, "kc_source": "FAO56: alfalfa hay, averaged cutting effects, Kc 0.40/0.95/0.90",
+      "ky": 1.1, "ky_source": "FAO33",
+      "humid_summer": {"rule": "humid_heat", "hottest_month_c": 27, "summer_rain_mm": 300, "kind": "hypothesis", "note": "In hot, humid summers (Gulf Coast, Florida) alfalfa stands thin out within 1-2 years (crown and root rots, nematodes); only non-dormant varieties and short stands. Never more than 'tight'."},
+      "n_note": "N credit for the next crop after alfalfa (extension credit ~100-150 lb N/acre)."
+    },
+    "winter_wheat": {
+      "kc_avg": 0.78, "kc_source": "FAO56: Kc 0.40/1.15/0.30, stages 30/140/40/30 d",
+      "ky": 1.0, "ky_source": "FAO33 (winter wheat)",
+      "heat_fail_c": 34, "heat_source": "HATFIELD2011",
+      "winter_hardiness": {"ok_min_c": -28.9, "limit_min_c": -40.0, "source": "USDA_ZONES", "note": "Hardened winter wheat survives zone 5 winters; below about -29 degC survival depends on snow cover and hardy cultivars (North Dakota and Saskatchewan sow it into stubble that traps snow), so winterkill risk is high and spring wheat is the norm."},
+      "vernalization": {"ok_days": 30, "limit_days": 10, "tmin_c": 0, "tmax_c": 10, "source": "PORTER_GAWITH1999", "note": "Days with mean temperature 0-10 degC from October to March. Soft red winter wheat of the Gulf states needs little; without cold (south Florida) a winter wheat does not head."}
+    },
+    "sugar_beet": {
+      "kc_avg": 0.93, "kc_source": "FAO56: Kc 0.35/1.20/0.70, stages 30/45/90/45 d",
+      "ky": 1.0, "ky_source": "FAO33",
+      "cool_season": {"ok_max_c": 24, "limit_max_c": 26.5, "kind": "hypothesis", "note": "Mean temperature of the hottest season month (real values: Red River Valley and Snake River Plain 21-22 degC, Gulf Coast 28 degC; MERRA-2 reads arid basins up to ~4 degC warm at night, hence the margin). US summer-grown sugar beet is confined to the northern states (Red River Valley, Michigan, Idaho, Nebraska); in hot summers root rots rise and sugar content falls. Hot regions (Imperial Valley) sow it in autumn instead."},
+      "corrections": {
+        "min_frost_free_days": {"value": null, "was": 150, "reason": "Sugar beet tolerates light frost: it is sown before the last spring frost and harvested after the first autumn frosts (Red River Valley frost-free season is ~130 days). Season length is judged by heat (GDD) instead."},
+        "gdd_required": {"value": 1600, "was": 2000, "reason": "Calibrated to the shortest commercial seasons (Red River Valley, Snake River Plain, ~1800-2000 degC-day base 5); team estimate, not a literature value."}
+      }
+    },
+    "sugarcane_perennial": {
+      "kc_avg": 1.0, "kc_source": "FAO56: Kc 0.40/1.25/0.75, ratoon stages 25/70/135/50 d",
+      "ky": 1.2, "ky_source": "FAO33",
+      "season_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "season_note": "Growth season of a Louisiana ratoon crop (spring regrowth to harvest); planting (Aug-Oct) is not the growth season.",
+      "winter_hardiness": {"ok_min_c": -6.7, "limit_min_c": -9.4, "source": "USDA_ZONES", "note": "US sugarcane is grown in zones 9-10 (Louisiana sugar belt, Florida Everglades, Rio Grande Valley); hard freezes kill buds of standing cane."},
+      "corrections": {"gdd_required": {"value": 2800, "was": 4000, "reason": "4000 degC-day (base 12) is a tropical 12-month cycle; the Louisiana belt, the coldest US cane region, accumulates ~3000 degC-day from March to December. Calibrated minimum, team estimate."}}
+    },
+    "potato": {
+      "kc_avg": 0.90, "kc_source": "FAO56: Kc 0.50/1.15/0.75, stages 30/35/50/30 d",
+      "ky": 1.1, "ky_source": "FAO33",
+      "cool_season": {"ok_max_c": 24, "limit_max_c": 26.5, "kind": "hypothesis", "note": "Mean temperature of the hottest season month (same calibration as sugar beet). Tuber growth falls sharply when mean temperatures exceed ~25 degC (warm nights); spring-planted (April-May) potato is a northern crop. In the South it is planted in winter instead (Levy & Veilleux 2007, Am. J. Potato Res. 84: 487-506)."}
+    },
+    "sorghum": {
+      "kc_avg": 0.74, "kc_source": "FAO56: Kc 0.30/1.00/0.55, stages 20/35/40/30 d",
+      "ky": 0.9, "ky_source": "FAO33",
+      "gdd_method": "capped_10_30", "heat_fail_c": 35, "heat_source": "HATFIELD2011",
+      "corrections": {"gdd_required": {"value": 1300, "was": 1500, "reason": "Early-maturing grain sorghum hybrids (northern Kansas, Nebraska, South Dakota) need ~2300-2400 degF GDD = ~1300 degC-day."}}
+    },
+    "cotton": {
+      "kc_avg": 0.85, "kc_source": "FAO56: Kc 0.35/1.175/0.50, stages 30/50/60/55 d",
+      "ky": 0.85, "ky_source": "FAO33",
+      "heat_fail_c": 35, "heat_source": "HATFIELD2011"
+    },
+    "rice": {
+      "kc_avg": 1.11, "kc_source": "FAO56: Kc 1.05/1.20/0.75, stages 30/30/60/30 d",
+      "percolation_mm_day": 2.0, "percolation_note": "Seepage and percolation of a flooded paddy on a restrictive soil layer; team hypothesis (1-4 mm/day on clay or silt loam with a hardpan).",
+      "ky": 1.25, "ky_source": "team hypothesis: FAO33 gives no seasonal Ky for paddy rice, which is very sensitive to water deficit",
+      "heat_fail_c": 35, "heat_source": "HATFIELD2011",
+      "texture": {"limit": ["sand", "loamy sand"], "marginal": ["sandy loam"], "note": "A flooded paddy needs a soil that holds water (clay, or silt loam over a hardpan as in Arkansas)."},
+      "corrections": {"gdd_required": {"value": 1700, "was": 1500, "reason": "The coolest US rice region (Sacramento Valley, medium-grain) accumulates ~1900 degC-day from May to September and southern long-grain needs more; 1700 is the calibrated minimum (team estimate)."}}
+    },
+    "barley": {
+      "kc_avg": 0.84, "kc_source": "FAO56: Kc 0.30/1.15/0.25, stages 15/25/50/30 d",
+      "ky": 1.0, "ky_source": "team hypothesis: taken equal to wheat (FAO33 has no barley factor)",
+      "heat_fail_c": 34, "heat_source": "HATFIELD2011 (wheat value, closest small grain)",
+      "cool_season": {"ok_max_c": 24, "limit_max_c": 26.5, "kind": "hypothesis", "note": "Mean temperature of the hottest season month (grain fill; same calibration as sugar beet). Spring barley is a northern crop (North Dakota, Montana, Idaho)."},
+      "corrections": {"min_frost_free_days": {"value": null, "was": 90, "reason": "Spring barley is frost tolerant and sown as early as the soil can be worked; season length is judged by heat (GDD)."}}
+    },
+    "peanut": {
+      "kc_avg": 0.79, "kc_source": "FAO56: Kc 0.40/1.15/0.60, stages 35/45/35/25 d",
+      "ky": 0.70, "ky_source": "FAO33 (groundnut)",
+      "heat_fail_c": 39, "heat_source": "HATFIELD2011",
+      "texture": {"limit": ["clay", "silty clay", "sandy clay"], "marginal": ["clay loam", "silty clay loam"], "note": "Pegs must enter the soil and pods be dug out: peanut needs sandy or loamy soils."}
+    },
+    "processing_tomato": {
+      "kc_avg": 0.92, "kc_source": "FAO56: Kc 0.60/1.15/0.80, stages 30/40/45/30 d",
+      "ky": 1.05, "ky_source": "FAO33",
+      "heat_fail_c": 32, "heat_source": "PEET1997"
+    },
+    "grape_perennial": {
+      "kc_avg": 0.60, "kc_source": "FAO56: wine grapes Kc 0.30/0.70/0.45, stages 20/40/120/60 d",
+      "ky": 0.85, "ky_source": "FAO33",
+      "season_months": [4, 5, 6, 7, 8, 9, 10], "season_note": "Winkler index period (April-October).",
+      "winter_hardiness": {"ok_min_c": -17.8, "limit_min_c": -23.3, "source": "USDA_ZONES", "note": "Vitis vinifera is injured below about -18 degC and killed to the ground below about -23 degC; colder regions grow only cold-hardy hybrid cultivars (e.g. Marquette, Frontenac)."},
+      "humid_summer": {"rule": "pierce", "ext_min_warmer_than_c": -6.7, "marginal_warmer_than_c": -9.4, "summer_rain_mm": 250, "marginal_summer_rain_mm": 200, "kind": "hypothesis", "note": "Mild winters plus humid summers (Gulf Coast, Florida) let Pierce's disease (Xylella fastidiosa) and fungal diseases destroy vinifera vines; only muscadine grapes are grown there."},
+      "corrections": {"gdd_required": {"value": 1100, "was": 1500, "reason": "1500 degC-day is Winkler region II; early cool-climate cultivars ripen from region I (1111-1389 degC-day, e.g. Willamette Valley, Finger Lakes)."}}
+    },
+    "almond_perennial": {
+      "kc_avg": 0.77, "kc_source": "FAO56: almonds without ground cover Kc 0.40/0.90/0.65, stages 30/50/130/30 d",
+      "ky": 0.9, "ky_source": "team hypothesis (no FAO33 factor for almond)",
+      "winter_hardiness": {"ok_min_c": -12.2, "limit_min_c": -17.8, "source": "USDA_ZONES", "note": "Dormant almond wood is damaged below about -15 to -18 degC; US almond is grown in zones 8-9."},
+      "bloom_frost": {"ok_before": "03-01", "limit_after": "04-01", "kind": "hypothesis", "note": "Almond flowers in February-March; frost at or after bloom destroys the crop. Rule on the 1-in-10-year last spring frost (Tmin <= 0 degC)."},
+      "humid_summer": {"rule": "dry_summer", "ok_max_mm": 75, "limit_max_mm": 150, "kind": "hypothesis", "note": "June-August rain. Commercial almond needs a Mediterranean dry summer (California holds ~100 % of US acreage): humid summers bring hull rot, scab and rain at harvest."}
+    }
+  }
+}

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field Shift</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">◐</span>
+      <div>
+        <h1>Field Shift</h1>
+        <p>NASA Earth observations to choose what to sow</p>
+      </div>
+    </div>
+    <!-- The three steps of the page. Steps already reached can be clicked to go back. -->
+    <nav class="steps" aria-label="Steps">
+      <button type="button" data-step="pick" class="step"><span>1</span> Choose a parcel</button>
+      <button type="button" data-step="aspects" class="step"><span>2</span> What to look at</button>
+      <button type="button" data-step="results" class="step"><span>3</span> Results</button>
+    </nav>
+    <div id="mode-badge" class="mode" title="Where the data on screen comes from">Mode: …</div>
+  </header>
+  <p id="setup-note" class="setup-note" role="status" hidden></p>
+
+  <!-- One layout, three views (class view-pick | view-aspects | view-results on #app). -->
+  <div id="app" class="app view-pick">
+    <aside id="side" class="side">
+
+      <!-- STEP 1: choose the parcel -->
+      <section id="pick-panel" class="step-panel">
+        <h2 class="step-title"><span class="num">1</span> Choose your parcel</h2>
+        <p class="muted small">Click a parcel on the map or in the list. You can also add your own field.</p>
+        <ul id="parcel-list" class="parcel-list"></ul>
+        <button id="add-field" type="button" class="add-field secondary" aria-pressed="false">+ Add my own field from the map</button>
+        <div id="pick-box" class="pick-box" hidden>
+          <p class="small">Zoom in until fields are outlined in yellow (US only), then click one. Or press <b>Draw</b> on the map and click its corners.</p>
+          <div id="pick-info" class="small muted">No field selected yet.</div>
+          <button id="analyze-field" type="button" class="add-field" disabled>Analyze this field</button>
+          <p id="pick-progress" class="small muted" aria-live="polite"></p>
+        </div>
+        <div id="chosen" class="chosen" hidden></div>
+      </section>
+
+      <!-- STEP 2: what the user wants to study -->
+      <section id="aspect-panel" class="step-panel">
+        <h2 class="step-title"><span class="num">2</span> What do you want to look at?</h2>
+        <p class="muted small">Tick the topics you are interested in. You can change them later.</p>
+        <div id="aspect-list" class="aspect-list"></div>
+        <div class="buttons">
+          <button type="button" id="aspects-essential" class="ghost">Only the essentials</button>
+          <button type="button" id="aspects-all" class="ghost">Everything</button>
+        </div>
+        <button type="button" id="go-results" class="primary">Show the results →</button>
+        <button type="button" class="linkbtn back" data-goto="pick">← Choose another parcel</button>
+      </section>
+
+      <!-- STEP 3: the chosen parcel on the side of the results -->
+      <section id="result-side" class="step-panel">
+        <div class="parcel-card">
+          <h2 id="parcel-name" class="parcel-title">…</h2>
+          <p id="parcel-meta" class="muted small"></p>
+          <div class="buttons">
+            <button type="button" class="ghost" data-goto="pick">Change parcel</button>
+            <button type="button" class="ghost" data-goto="aspects">Change topics</button>
+          </div>
+        </div>
+        <div id="side-map-slot" class="side-map-slot"></div>
+
+        <!-- Scenario controls (only if the "climate scenario" topic is chosen) -->
+        <details id="scenario-box" class="side-box" data-aspect="scenario" open>
+          <summary>Imagine a different climate</summary>
+          <div class="notice" role="note">
+            <strong>Escenario hipotético, no es una predicción</strong>
+            <span>Hypothetical scenario, not a prediction</span>
+          </div>
+          <div class="control">
+            <label for="dp">Rainfall change <output id="dp-out">0 %</output></label>
+            <input id="dp" type="range" min="-30" max="0" step="1" value="0" aria-valuetext="0 % rainfall">
+          </div>
+          <div class="control">
+            <label for="dt">Temperature change <output id="dt-out">+0.0 °C</output></label>
+            <input id="dt" type="range" min="0" max="3" step="0.1" value="0" aria-valuetext="plus 0.0 degrees">
+          </div>
+          <div class="control">
+            <label class="check"><input id="irr-on" type="checkbox"> Assume irrigation is available</label>
+            <label for="irr" title="Share of the water shortfall that irrigation would cover (hypothetical).">Irrigation covers (% of the shortfall) <output id="irr-out">0 %</output></label>
+            <input id="irr" type="range" min="0" max="100" step="5" value="0" disabled aria-valuetext="0 % of deficit covered">
+          </div>
+          <div class="buttons">
+            <button id="preset-dry" type="button" title="Sets −15 % rain and +1.0 °C. Not a projection.">Moderately dry</button>
+            <button id="preset-hot" type="button" title="Sets −25 % rain and +2.5 °C. Not a projection.">Dry and warm</button>
+            <button id="reset" type="button" class="ghost">Today's climate</button>
+          </div>
+          <p id="sim-status" class="muted small" aria-live="polite"></p>
+          <div id="sim-summary" class="sim-summary" aria-live="polite"></div>
+        </details>
+
+        <!-- Map layers (only if the "map layers" topic is chosen) -->
+        <details class="side-box" data-aspect="layers">
+          <summary>Map layers <span class="muted small">· satellite and climate data</span></summary>
+          <div id="layer-list" class="layer-list"></div>
+        </details>
+      </section>
+    </aside>
+
+    <!-- The map: big in steps 1-2; moved into the side panel in step 3 (same map, no reload). -->
+    <div id="map-slot" class="map-slot">
+      <div id="map-wrap" class="map-wrap">
+        <div id="map" class="map" aria-label="Map of the parcels"></div>
+      </div>
+    </div>
+
+    <!-- STEP 3: results, in order, each one opens on demand -->
+    <main id="results" class="results" aria-label="Results">
+      <p id="results-intro" class="muted small">Open each topic to see its details. The most useful ones come first.</p>
+
+      <details class="rsec" data-aspect="reco" open>
+        <summary><span class="rt">What to sow here</span><span class="hl" id="hl-reco"></span></summary>
+        <section id="reco" class="reco" aria-label="What to sow here"></section>
+      </details>
+
+      <details class="rsec" data-aspect="rotation">
+        <summary><span class="rt">Crop rotation plan</span><span class="hl" id="hl-rotation"></span></summary>
+        <div id="rotation-plan"></div>
+      </details>
+
+      <details class="rsec" data-aspect="crop">
+        <summary><span class="rt">One crop in detail</span><span class="hl" id="hl-crop"></span></summary>
+        <div class="control">
+          <label for="crop">Crop to look at</label>
+          <select id="crop" class="crop-select" aria-describedby="crop-hint"></select>
+          <span id="crop-hint" class="muted small">At first: the crop grown on the parcel last year (USDA CDL).</span>
+        </div>
+        <div id="sim-crop"></div>
+      </details>
+
+      <details class="rsec" data-aspect="money">
+        <summary><span class="rt">Money check</span><span class="hl" id="hl-money"></span></summary>
+        <section id="econ" class="econ" aria-label="Money check"></section>
+      </details>
+
+      <details class="rsec" data-aspect="scenario">
+        <summary><span class="rt">What the climate scenario changes</span><span class="hl" id="hl-scenario"></span></summary>
+        <div id="sim-results"></div>
+      </details>
+
+      <details class="rsec" data-aspect="field">
+        <summary><span class="rt">Your field at a glance</span><span class="hl" id="hl-field"></span></summary>
+        <section id="tiles" class="tiles"></section>
+        <h3 class="sub-title">Crops grown here in past years <span class="src">USDA CDL · non-NASA</span></h3>
+        <div id="rotation" class="rotation"></div>
+        <p class="muted small">Main crop per year inside the parcel (share of the area). Please check it matches what you grew.</p>
+      </details>
+
+      <details class="rsec" data-aspect="climate">
+        <summary><span class="rt">Climate, water and green cover through the year</span><span class="hl" id="hl-climate"></span></summary>
+        <section class="charts">
+          <article class="card">
+            <header class="card-h"><h3>Green cover through the year</h3><span class="src">Landsat 8/9 · NASA/USGS</span></header>
+            <div class="chart-box"><canvas id="ndvi-chart"></canvas></div>
+            <p class="muted small" id="bare-note"></p>
+          </article>
+          <article class="card">
+            <header class="card-h"><h3>Rain vs. water the crops need</h3><span class="src">NASA POWER · SMAP</span></header>
+            <div class="chart-box"><canvas id="water-chart"></canvas></div>
+            <p class="muted small">Blue bars: rain. Orange bars: water the air pulls from a reference grass (ET0); when orange is higher than blue, plants need water from the soil or irrigation. Values describe a ~50 km zone.</p>
+          </article>
+        </section>
+      </details>
+
+      <details class="rsec" data-aspect="catalogue">
+        <summary><span class="rt">All crops compared</span><span class="hl" id="hl-catalogue"></span></summary>
+        <p class="muted small">Every crop in the catalogue against this parcel's <strong>today's</strong> climate and soil, with the same rules as "What to sow here". A screening to help you decide, not advice: check with a local agronomist.</p>
+        <div class="table-wrap"><table id="crop-table"></table></div>
+      </details>
+
+      <details class="rsec" data-aspect="evidence">
+        <summary><span class="rt">Where the data comes from</span><span class="hl" id="hl-evidence"></span></summary>
+        <div id="indicators" class="indicators"></div>
+        <h3 class="sub-title">Information gaps</h3>
+        <ul id="gaps" class="gaps"></ul>
+      </details>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p class="muted small">Satellite basemap: Esri World Imagery (display only, not used in any calculation). Climate: NASA POWER. Results are screening aids, not predictions.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="field-picker.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

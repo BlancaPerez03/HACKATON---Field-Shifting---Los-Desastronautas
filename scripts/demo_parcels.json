@@ -1,0 +1,26 @@
+{
+  "_note": "Demo parcels provided by the team (Iowa State University research farms). Rectangles drawn by the team from corner coordinates; check against the farm maps before publishing.",
+  "parcels": [
+    {
+      "id": "isu_agronomy_south",
+      "name": "ISU Agronomy Research Farm - Parcela Sur (Boone County, Iowa)",
+      "declared_area_ha": 60.9,
+      "geometry": {"type": "Polygon", "coordinates": [[[-93.77480, 42.01480], [-93.77480, 42.00790],
+        [-93.76520, 42.00790], [-93.76520, 42.01480], [-93.77480, 42.01480]]]}
+    },
+    {
+      "id": "isu_northeast_main",
+      "name": "ISU Northeast Research Farm - Lote Principal (Floyd County, Iowa)",
+      "declared_area_ha": 60.3,
+      "geometry": {"type": "Polygon", "coordinates": [[[-92.57350, 42.94480], [-92.57350, 42.93780],
+        [-92.56400, 42.93780], [-92.56400, 42.94480], [-92.57350, 42.94480]]]}
+    },
+    {
+      "id": "isu_southeast_east",
+      "name": "ISU Southeast Research Farm - Lote Este (Washington County, Iowa)",
+      "declared_area_ha": 53.1,
+      "geometry": {"type": "Polygon", "coordinates": [[[-91.48470, 41.19650], [-91.48470, 41.19050],
+        [-91.47520, 41.19050], [-91.47520, 41.19650], [-91.48470, 41.19650]]]}
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "_ai": "AI-assisted: compiled with an AI coding assistant (Claude) from the sources below on 2026-11-14 and reviewed by the team. Every value is a default the farmer can overwrite.",
+  "_verify": "Values marked verified=false come from secondary summaries of the official publication; check them against the original before submission.",
+  "units": {"acre_ha": 0.40468564224},
+  "sources": {
+    "isu_2026": {"name": "Iowa State University Extension, Estimated Costs of Crop Production in Iowa - 2026 (FM 1712, Ag Decision Maker A1-20)",
+                 "url": "https://www.extension.iastate.edu/agdm/crops/pdf/a1-20.pdf",
+                 "note": "Total cost per acre including land rent, machinery and labour; planning benchmark, not a farm-specific estimate. Figures read from a secondary summary (fencerow.farm)."},
+    "ers_2025": {"name": "USDA ERS Commodity Costs and Returns, 2025 forecast of total costs per planted acre (US average)",
+                 "url": "https://www.ers.usda.gov/data-products/commodity-costs-and-returns",
+                 "note": "National average total costs, read from an American Farm Bureau summary (fb.org, 'Significant Farm Losses Persist')."},
+    "wasde_2026_11": {"name": "USDA World Agricultural Supply and Demand Estimates, November 2026 (2026/27 season-average farm price)",
+                      "url": "https://www.usda.gov/oce/commodity/wasde/wasde1126.pdf",
+                      "note": "Season-average farm price forecast; local cash prices and basis differ."},
+    "team_catalogue": {"name": "Team crop catalogue (backend/catalog/crops_us.csv), US mean yield", "url": null,
+                       "note": "Per-value references not yet cited."}
+  },
+  "crops": {
+    "corn_maize": {"bushel_kg": 25.401,
+      "cost_usd_acre": 911.98, "cost_source": "isu_2026", "cost_label": "Corn following soybeans, Iowa 2026", "cost_verified": false,
+      "yield": {"value": 211, "unit": "bu/acre", "source": "isu_2026", "label": "ISU budget yield (corn after soybeans)"},
+      "price": {"value": 4.60, "unit": "USD/bu", "source": "wasde_2026_11", "verified": true}},
+    "soybean": {"bushel_kg": 27.216,
+      "cost_usd_acre": 679.11, "cost_source": "isu_2026", "cost_label": "Herbicide-tolerant soybeans following corn, Iowa 2026", "cost_verified": false,
+      "yield": {"value": 61, "unit": "bu/acre", "source": "isu_2026", "label": "ISU budget yield (soybeans after corn)"},
+      "price": {"value": 12.10, "unit": "USD/bu", "source": "wasde_2026_11", "verified": true}},
+    "winter_wheat": {"bushel_kg": 27.216,
+      "cost_usd_acre": 396, "cost_source": "ers_2025", "cost_label": "Wheat, US average 2025 forecast", "cost_verified": false,
+      "yield": null,
+      "price": {"value": 6.20, "unit": "USD/bu", "source": "wasde_2026_11", "verified": true}},
+    "sorghum": {"bushel_kg": 25.401, "cost_usd_acre": 443, "cost_source": "ers_2025", "cost_label": "Sorghum, US average 2025 forecast", "cost_verified": false, "yield": null, "price": null},
+    "barley": {"bushel_kg": 21.772, "cost_usd_acre": 491, "cost_source": "ers_2025", "cost_label": "Barley, US average 2025 forecast", "cost_verified": false, "yield": null, "price": null},
+    "cotton": {"cost_usd_acre": 943, "cost_source": "ers_2025", "cost_label": "Cotton, US average 2025 forecast", "cost_verified": false, "yield": null, "price": null},
+    "rice": {"cost_usd_acre": 1308, "cost_source": "ers_2025", "cost_label": "Rice, US average 2025 forecast", "cost_verified": false, "yield": null, "price": null},
+    "peanut": {"cost_usd_acre": 1166, "cost_source": "ers_2025", "cost_label": "Peanuts, US average 2025 forecast", "cost_verified": false, "yield": null, "price": null}
+  }
+}

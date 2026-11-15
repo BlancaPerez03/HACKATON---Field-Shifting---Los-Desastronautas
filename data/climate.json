@@ -1,0 +1,699 @@
+{
+  "source": "NASA POWER (power.larc.nasa.gov), comunidad AG, datos diarios",
+  "downloadedAt": "2026-11-14T16:25:20+00:00",
+  "period": "2001-2025",
+  "months": [
+    {
+      "month": 1,
+      "precipMm": 56.6,
+      "tMaxC": 15.7,
+      "tMinC": 5.1,
+      "frostDays": 1.6,
+      "heatDays": 0.0,
+      "et0Mm": 41.4,
+      "waterBalanceMm": 15.3,
+      "precipP10Mm": 7.7,
+      "precipP90Mm": 112.8,
+      "heavyRainDays": 0.64,
+      "wetDays": 6.4,
+      "gdd": 46,
+      "rhPct": 73,
+      "solarMJm2": 9.5,
+      "yearsWithData": 25
+    },
+    {
+      "month": 2,
+      "precipMm": 50.2,
+      "tMaxC": 17.1,
+      "tMinC": 5.7,
+      "frostDays": 0.8,
+      "heatDays": 0.0,
+      "et0Mm": 55.2,
+      "waterBalanceMm": -5.0,
+      "precipP10Mm": 7.5,
+      "precipP90Mm": 101.5,
+      "heavyRainDays": 0.2,
+      "wetDays": 7.2,
+      "gdd": 59,
+      "rhPct": 73,
+      "solarMJm2": 13.5,
+      "yearsWithData": 25
+    },
+    {
+      "month": 3,
+      "precipMm": 51.3,
+      "tMaxC": 20.1,
+      "tMinC": 7.2,
+      "frostDays": 0.1,
+      "heatDays": 0.0,
+      "et0Mm": 94.0,
+      "waterBalanceMm": -42.7,
+      "precipP10Mm": 14.4,
+      "precipP90Mm": 111.4,
+      "heavyRainDays": 0.32,
+      "wetDays": 7.3,
+      "gdd": 121,
+      "rhPct": 69,
+      "solarMJm2": 18.3,
+      "yearsWithData": 25
+    },
+    {
+      "month": 4,
+      "precipMm": 24.4,
+      "tMaxC": 24.1,
+      "tMinC": 9.0,
+      "frostDays": 0.0,
+      "heatDays": 0.6,
+      "et0Mm": 140.0,
+      "waterBalanceMm": -115.6,
+      "precipP10Mm": 2.7,
+      "precipP90Mm": 49.8,
+      "heavyRainDays": 0.16,
+      "wetDays": 4.2,
+      "gdd": 192,
+      "rhPct": 60,
+      "solarMJm2": 23.6,
+      "yearsWithData": 25
+    },
+    {
+      "month": 5,
+      "precipMm": 10.5,
+      "tMaxC": 30.3,
+      "tMinC": 12.7,
+      "frostDays": 0.0,
+      "heatDays": 5.5,
+      "et0Mm": 215.1,
+      "waterBalanceMm": -204.5,
+      "precipP10Mm": 0.4,
+      "precipP90Mm": 24.2,
+      "heavyRainDays": 0.04,
+      "wetDays": 2.2,
+      "gdd": 321,
+      "rhPct": 45,
+      "solarMJm2": 28.0,
+      "yearsWithData": 25
+    },
+    {
+      "month": 6,
+      "precipMm": 2.1,
+      "tMaxC": 36.6,
+      "tMinC": 17.0,
+      "frostDays": 0.0,
+      "heatDays": 19.8,
+      "et0Mm": 270.0,
+      "waterBalanceMm": -267.9,
+      "precipP10Mm": 0.0,
+      "precipP90Mm": 3.4,
+      "heavyRainDays": 0.0,
+      "wetDays": 0.4,
+      "gdd": 402,
+      "rhPct": 32,
+      "solarMJm2": 30.4,
+      "yearsWithData": 25
+    },
+    {
+      "month": 7,
+      "precipMm": 0.9,
+      "tMaxC": 40.7,
+      "tMinC": 20.7,
+      "frostDays": 0.0,
+      "heatDays": 29.9,
+      "et0Mm": 284.6,
+      "waterBalanceMm": -283.7,
+      "precipP10Mm": 0.0,
+      "precipP90Mm": 1.6,
+      "heavyRainDays": 0.0,
+      "wetDays": 0.3,
+      "gdd": 476,
+      "rhPct": 26,
+      "solarMJm2": 29.5,
+      "yearsWithData": 25
+    },
+    {
+      "month": 8,
+      "precipMm": 1.1,
+      "tMaxC": 39.2,
+      "tMinC": 19.9,
+      "frostDays": 0.0,
+      "heatDays": 28.5,
+      "et0Mm": 246.5,
+      "waterBalanceMm": -245.5,
+      "precipP10Mm": 0.0,
+      "precipP90Mm": 2.3,
+      "heavyRainDays": 0.0,
+      "wetDays": 0.3,
+      "gdd": 463,
+      "rhPct": 28,
+      "solarMJm2": 26.7,
+      "yearsWithData": 25
+    },
+    {
+      "month": 9,
+      "precipMm": 2.5,
+      "tMaxC": 35.5,
+      "tMinC": 17.7,
+      "frostDays": 0.0,
+      "heatDays": 17.9,
+      "et0Mm": 183.0,
+      "waterBalanceMm": -180.5,
+      "precipP10Mm": 0.0,
+      "precipP90Mm": 6.2,
+      "heavyRainDays": 0.0,
+      "wetDays": 0.6,
+      "gdd": 411,
+      "rhPct": 33,
+      "solarMJm2": 22.1,
+      "yearsWithData": 25
+    },
+    {
+      "month": 10,
+      "precipMm": 14.8,
+      "tMaxC": 28.4,
+      "tMinC": 13.4,
+      "frostDays": 0.0,
+      "heatDays": 2.6,
+      "et0Mm": 118.4,
+      "waterBalanceMm": -103.6,
+      "precipP10Mm": 0.1,
+      "precipP90Mm": 38.1,
+      "heavyRainDays": 0.24,
+      "wetDays": 2.2,
+      "gdd": 318,
+      "rhPct": 43,
+      "solarMJm2": 16.5,
+      "yearsWithData": 25
+    },
+    {
+      "month": 11,
+      "precipMm": 27.9,
+      "tMaxC": 20.6,
+      "tMinC": 8.3,
+      "frostDays": 0.1,
+      "heatDays": 0.0,
+      "et0Mm": 60.4,
+      "waterBalanceMm": -32.5,
+      "precipP10Mm": 5.8,
+      "precipP90Mm": 57.6,
+      "heavyRainDays": 0.2,
+      "wetDays": 4.6,
+      "gdd": 138,
+      "rhPct": 60,
+      "solarMJm2": 11.3,
+      "yearsWithData": 25
+    },
+    {
+      "month": 12,
+      "precipMm": 62.3,
+      "tMaxC": 15.3,
+      "tMinC": 5.1,
+      "frostDays": 1.5,
+      "heatDays": 0.0,
+      "et0Mm": 38.3,
+      "waterBalanceMm": 24.1,
+      "precipP10Mm": 12.2,
+      "precipP90Mm": 105.0,
+      "heavyRainDays": 0.52,
+      "wetDays": 7.9,
+      "gdd": 41,
+      "rhPct": 73,
+      "solarMJm2": 8.4,
+      "yearsWithData": 25
+    }
+  ],
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-14T16:25:20+00:00",
+  "dataType": "observado (reanálisis/satélite) + calculado",
+  "farm": {
+    "name": "Finca piloto Five Points (Fresno County, CA)",
+    "lat": 36.34,
+    "lon": -120.11,
+    "elevationM": 141.1,
+    "elevationSource": "NASA POWER (rejilla MERRA-2)"
+  },
+  "spatialResolution": "~0.5° x 0.625° (~50 km): describe la comarca, no la parcela",
+  "fromCache": false,
+  "missingDays": {
+    "T2M_MAX": 0,
+    "T2M_MIN": 0,
+    "T2M": 0,
+    "T2MDEW": 0,
+    "RH2M": 0,
+    "PRECTOTCORR": 0,
+    "ALLSKY_SFC_SW_DWN": 0,
+    "WS2M": 0
+  },
+  "frost": {
+    "lastSpringFrostDoyMedian": 45,
+    "lastSpringFrostDoyP90": 60,
+    "firstFallFrostDoyMedian": 352,
+    "firstFallFrostDoyP10": 335,
+    "yearsWithoutSpringFrost": 7,
+    "note": "Calculado con Tmin de POWER (~50 km). Las heladas por inversión en zonas bajas de la finca pueden ser más frecuentes: validar con estación CIMIS."
+  },
+  "trends": {
+    "precipMm": {
+      "perDecade": 15.99,
+      "years": 25,
+      "annualMean": 304.6
+    },
+    "et0Mm": {
+      "perDecade": 2.8,
+      "years": 25,
+      "annualMean": 1746.8
+    },
+    "tMaxC": {
+      "perDecade": 0.3,
+      "years": 25,
+      "annualMean": 27.0
+    },
+    "tMinC": {
+      "perDecade": 0.56,
+      "years": 25,
+      "annualMean": 11.9
+    },
+    "heatDays": {
+      "perDecade": 3.02,
+      "years": 25,
+      "annualMean": 104.8
+    },
+    "frostDays": {
+      "perDecade": -1.63,
+      "years": 25,
+      "annualMean": 4.1
+    },
+    "note": "Tendencia descriptiva del periodo, sin test de significación ni proyección futura. No es una predicción."
+  },
+  "dryYears": {
+    "p20AnnualPrecipMm": 219.9,
+    "years": [
+      2002,
+      2007,
+      2013,
+      2015,
+      2020
+    ]
+  },
+  "annual": {
+    "precipMm": 305.0,
+    "et0Mm": 1747.0,
+    "waterBalanceMm": -1442.0
+  },
+  "thresholds": {
+    "frost_tmin_c": {
+      "value": 0.0,
+      "kind": "estandar",
+      "note": "Día de helada: Tmin < 0 °C (índice FD de ETCCDI)."
+    },
+    "heat_tmax_c": {
+      "value": 35.0,
+      "kind": "hipotesis",
+      "note": "Día de calor extremo para cultivos de verano. Validar por cultivo con UC ANR."
+    },
+    "very_heavy_precip_mm": {
+      "value": 20.0,
+      "kind": "estandar",
+      "note": "Día de lluvia muy intensa: P >= 20 mm (índice R20mm de ETCCDI)."
+    },
+    "wet_day_mm": {
+      "value": 1.0,
+      "kind": "estandar",
+      "note": "Día con lluvia: P >= 1 mm (ETCCDI)."
+    },
+    "gdd_base_c": {
+      "value": 10.0,
+      "kind": "hipotesis",
+      "note": "Base de grados-día. Común para cultivos de verano; la persona 4 ajusta por cultivo."
+    },
+    "gdd_cap_c": {
+      "value": 30.0,
+      "kind": "hipotesis",
+      "note": "Techo de grados-día (método de techo horizontal)."
+    }
+  },
+  "methods": {
+    "et0Mm": "FAO-56 Penman-Monteith diario; presión de vapor desde punto de rocío; G=0.",
+    "waterBalanceMm": "Lluvia - ET0 del mes. Negativo = déficit que debe cubrir el riego (para el cultivo real, multiplicar ET0 por su Kc).",
+    "climatology": "Media entre años de cada mes; p10/p90 = año seco/húmedo de 1 en 10."
+  },
+  "limitations": [
+    "Resolución ~50 km: no distingue diferencias dentro de la finca.",
+    "La lluvia de POWER es un producto modelado/corregido; contrastar con IMERG o CIMIS.",
+    "En Fresno la mayor parte del agua del cultivo viene del riego, no de la lluvia.",
+    "Umbrales marcados como 'hipotesis' deben validarse con UC ANR o un técnico local."
+  ],
+  "sowingForecast": {
+    "source": "Open-Meteo (previsión, no observación)",
+    "downloadedAt": "2026-11-14T16:25:21+00:00",
+    "rulesKind": "hipotesis",
+    "days": {
+      "tomate_industria": [
+        {
+          "date": "2026-11-14",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.9
+        },
+        {
+          "date": "2026-11-15",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 14.0
+        },
+        {
+          "date": "2026-11-16",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.5
+        },
+        {
+          "date": "2026-11-17",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 11.2
+        },
+        {
+          "date": "2026-11-18",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.3
+        },
+        {
+          "date": "2026-11-19",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 12.6
+        },
+        {
+          "date": "2026-11-20",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.9
+        },
+        {
+          "date": "2026-11-21",
+          "suitable": false,
+          "blockers": [
+            "suelo 9.2 °C < 10.0 °C"
+          ],
+          "soilTempC": 9.2
+        },
+        {
+          "date": "2026-11-22",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-23",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-24",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-25",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-26",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-27",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-28",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-29",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo",
+            "mínima del aire None °C < 5.0 °C"
+          ],
+          "soilTempC": null
+        }
+      ],
+      "trigo": [
+        {
+          "date": "2026-11-14",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.9
+        },
+        {
+          "date": "2026-11-15",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 14.0
+        },
+        {
+          "date": "2026-11-16",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.5
+        },
+        {
+          "date": "2026-11-17",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 11.2
+        },
+        {
+          "date": "2026-11-18",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.3
+        },
+        {
+          "date": "2026-11-19",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 12.6
+        },
+        {
+          "date": "2026-11-20",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.9
+        },
+        {
+          "date": "2026-11-21",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 9.2
+        },
+        {
+          "date": "2026-11-22",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-23",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-24",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-25",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-26",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-27",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-28",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-29",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo",
+            "mínima del aire None °C < -5.0 °C"
+          ],
+          "soilTempC": null
+        }
+      ],
+      "garbanzo": [
+        {
+          "date": "2026-11-14",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.9
+        },
+        {
+          "date": "2026-11-15",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 14.0
+        },
+        {
+          "date": "2026-11-16",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 13.5
+        },
+        {
+          "date": "2026-11-17",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 11.2
+        },
+        {
+          "date": "2026-11-18",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.3
+        },
+        {
+          "date": "2026-11-19",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 12.6
+        },
+        {
+          "date": "2026-11-20",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 10.9
+        },
+        {
+          "date": "2026-11-21",
+          "suitable": true,
+          "blockers": [],
+          "soilTempC": 9.2
+        },
+        {
+          "date": "2026-11-22",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-23",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-24",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-25",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-26",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-27",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-28",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo"
+          ],
+          "soilTempC": null
+        },
+        {
+          "date": "2026-11-29",
+          "suitable": false,
+          "blockers": [
+            "sin dato de temperatura del suelo",
+            "mínima del aire None °C < -2.0 °C"
+          ],
+          "soilTempC": null
+        }
+      ]
+    },
+    "stale": false
+  }
+}

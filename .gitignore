@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.vscode/
+# Secrets: never commit
+.env
+*.json.key
+*service-account*.json
+credentials*.json
+# Regenerated data (the demo cache in backend/demo_cache/ IS committed)
+data/cache/
+data/raw/
+# Not project code
+get-pip.py

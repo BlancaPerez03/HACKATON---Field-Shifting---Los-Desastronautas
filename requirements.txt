@@ -1,0 +1,10 @@
+# Python >= 3.11 (earthengine-api 1.7.52 requires it)
+pandas>=2.0
+numpy>=1.24
+requests>=2.31
+shapely>=2.0
+fastapi>=0.110
+uvicorn>=0.29
+python-dotenv>=1.0
+earthengine-api>=1.7.52
+pytest>=7

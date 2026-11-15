@@ -1,0 +1,54 @@
+{
+  "layers": [
+    {
+      "id": "ndvi", "name": "Vegetation greenness (NDVI)",
+      "description": "Monthly median NDVI of cloud-free Landsat scenes, averaged over the parcel.",
+      "source": {"name": "Landsat 8/9 Collection 2 Level 2", "ids": ["LANDSAT/LC08/C02/T1_L2", "LANDSAT/LC09/C02/T1_L2"], "nasa": true},
+      "data_type": "satellite", "type_label": "Observed", "resolution": "30 m", "unit": "NDVI (0-1)",
+      "scale_note": "parcel", "temporal": true, "mode": "real", "render": "parcel_fill",
+      "legend": {"min": 0, "max": 0.9, "palette": ["#a6611a", "#dfc27d", "#c2e699", "#78c679", "#238443", "#004529"]},
+      "warnings": ["NDVI_NOT_FERTILITY"],
+      "honesty": "Painted as one value for the whole parcel: the analysis stores the parcel mean, not a 30 m map (30 m tiles are a P1 item)."
+    },
+    {
+      "id": "smap", "name": "Root-zone soil moisture (SMAP L4)",
+      "description": "Monthly mean of SMAP L4 sm_rootzone (0-100 cm) in the grid cell that contains the parcel.",
+      "source": {"name": "NASA SMAP L4", "ids": ["NASA/SMAP/SPL4SMGP/008"], "nasa": true},
+      "data_type": "model", "type_label": "Model", "resolution": "~9-11 km", "unit": "m³/m³",
+      "scale_note": "zone", "temporal": true, "mode": "real", "render": "zone_polygon",
+      "legend": {"min": 0.05, "max": 0.45, "palette": ["#fff7ec", "#c6dbef", "#6baed6", "#2171b5", "#08306b"]},
+      "warnings": ["ZONE_SCALE_DATA"],
+      "honesty": "The whole SMAP grid cell is drawn as one polygon: the value describes a ~9-11 km zone, never a point."
+    },
+    {
+      "id": "precip", "name": "Monthly rainfall (NASA POWER)",
+      "description": "Monthly total of PRECTOTCORR for the MERRA-2 cell of the parcel.",
+      "source": {"name": "NASA POWER daily, AG community", "ids": ["PRECTOTCORR (MERRA-2 based, bias-corrected)"], "nasa": true},
+      "data_type": "reanalysis", "type_label": "Reanalysis", "resolution": "0.5° × 0.625° (~50 × 60 km)", "unit": "mm/month",
+      "scale_note": "zone", "temporal": true, "mode": "real", "render": "zone_polygon",
+      "legend": {"min": 0, "max": 200, "palette": ["#f7fbff", "#c6dbef", "#6baed6", "#2171b5", "#08306b"]},
+      "warnings": ["ZONE_SCALE_DATA", "EXTREMES_SMOOTHED"],
+      "honesty": "The MERRA-2 cell is drawn as one polygon with its monthly total; no tiles, no interpolation."
+    },
+    {
+      "id": "slope", "name": "Slope (NASADEM)",
+      "description": "Terrain slope from NASADEM, computed on the unclipped DEM and shown per pixel inside the parcel.",
+      "source": {"name": "NASADEM", "ids": ["NASA/NASADEM_HGT/001"], "nasa": true},
+      "data_type": "satellite", "type_label": "Observed", "resolution": "1 arc-second (~30 m)", "unit": "degrees",
+      "scale_note": "parcel", "temporal": false, "mode": "real", "render": "pixel_grid",
+      "legend": {"min": 0, "max": 10, "palette": ["#ffffcc", "#fed976", "#fd8d3c", "#e31a1c", "#800026"]},
+      "warnings": [],
+      "honesty": "Native 1 arc-second pixels, nearest-neighbour, no smoothing. Radar DEM from 2000: field levelling since then is not captured."
+    },
+    {
+      "id": "risk", "name": "Risk zones (scenario)",
+      "description": "Erosion screening per pixel (slope varies per pixel; rain, soil and cover are parcel/zone factors) and possible cold-air pooling (hollows with low slope).",
+      "source": {"name": "Derived from NASADEM + NASA POWER + OpenLandMap + Landsat", "ids": ["simulate sim-1"], "nasa": true},
+      "data_type": "derived", "type_label": "Derived + hypothetical", "resolution": "1 arc-second (~30 m)", "unit": "class",
+      "scale_note": "parcel", "temporal": false, "mode": "real", "render": "pixel_grid",
+      "legend": {"classes": [["1", "Low", "#4caf50"], ["2", "Medium", "#f0b429"], ["3", "High", "#d64545"]], "cold": "#5b6cff"},
+      "warnings": ["HYPOTHETICAL_SCENARIO"],
+      "honesty": "Relative screening index; not a soil-loss estimate. Cold-air pooling is a team screening rule (TPI ≤ -1 m, slope ≤ 2°), not a validated model."
+    }
+  ]
+}
